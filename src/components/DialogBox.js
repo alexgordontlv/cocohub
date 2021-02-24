@@ -7,7 +7,8 @@ const DialogBox = ({ setSelectedImage, setOpen, open, selectedImage }) => {
       open
       onClick={() => {
         setSelectedImage(null);
-        setOpen(!open);
+        setOpen((open) => !open);
+        document.body.style.overflow = "scroll";
       }}
     >
       <StyledFullSizeImage

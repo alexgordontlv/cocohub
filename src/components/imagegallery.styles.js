@@ -1,5 +1,14 @@
-import styled from "styled-components";
-
+import styled, { createGlobalStyle } from "styled-components";
+export const GlobalStyle = createGlobalStyle`
+.body{  
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;}
+`;
 export const loaderStyle = {
   position: "fixed",
   top: "50%",
@@ -17,6 +26,7 @@ export const WrapperDiv = styled.div`
 `;
 
 export const StyledDialog = styled.dialog`
+  padding: 0;
   position: fixed;
   border: none;
   background-color: rgba(0, 0, 0, 0.9);
@@ -24,6 +34,9 @@ export const StyledDialog = styled.dialog`
   width: 100%;
   height: 100%;
   top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const StyledDiv = styled.div`

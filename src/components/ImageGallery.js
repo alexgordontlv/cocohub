@@ -31,8 +31,9 @@ const ImageGallery = ({ imageNumber }) => {
   }, []);
 
   const onImageClick = (image) => {
+    document.body.style.overflow = "hidden";
     setSelectedImage(image);
-    setOpen(!open);
+    setOpen((open) => !open);
   };
 
   const imageLoaded = () => {
