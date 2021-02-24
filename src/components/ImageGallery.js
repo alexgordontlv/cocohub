@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  StyledDialog,
   StyledImage,
-  StyledFullSizeImage,
   StyledDiv,
   WrapperDiv,
   loaderStyle,
 } from "./imagegallery.styles";
+import DialogBox from "./DialogBox";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const ImageGallery = ({ imageNumber }) => {
@@ -38,7 +37,7 @@ const ImageGallery = ({ imageNumber }) => {
 
   const imageLoaded = () => {
     counterRef.current += 1;
-    console.log(counterRef);
+    console.log(counterRef.current);
     if (counterRef.current >= imageNumber - 2) {
       setFetching(false);
     }
@@ -64,20 +63,12 @@ const ImageGallery = ({ imageNumber }) => {
           )
       )}
       {open && (
-        <StyledDialog
-          open
-          onClick={() => {
-            setSelectedImage(null);
-            setOpen(!open);
-          }}
-        >
-          <StyledFullSizeImage
-            src={selectedImage.download_url}
-            alt={selectedImage.author}
-            width="1000"
-            height="800"
-          />
-        </StyledDialog>
+        <DialogBox
+          open={open}
+          setOpen={setOpen}
+          selectedImage={selectedImage}
+          setSelectedImage={setSelectedImage}
+        />
       )}
     </WrapperDiv>
   );
