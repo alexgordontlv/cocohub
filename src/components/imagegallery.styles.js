@@ -1,17 +1,26 @@
 import styled from "styled-components";
 
+export const loaderStyle = {
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+};
 export const WrapperDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  max-width: 100%;
+  max-height: 100%;
   position: relative;
 `;
 
 export const StyledDialog = styled.dialog`
-  position: absolute;
+  position: fixed;
   border: none;
   background-color: rgba(0, 0, 0, 0.9);
+  height: auto;
   width: 100%;
   height: 100%;
   top: 0px;

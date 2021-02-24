@@ -4,7 +4,7 @@ import ImageGallery from "./components/ImageGallery";
 function App() {
   return (
     <div className="app">
-      <ImageGallery imageNumber={20} />
+      <ImageGallery imageNumber={15} />
     </div>
   );
 }

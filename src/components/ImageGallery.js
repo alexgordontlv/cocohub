@@ -5,6 +5,7 @@ import {
   StyledFullSizeImage,
   StyledDiv,
   WrapperDiv,
+  loaderStyle,
 } from "./imagegallery.styles";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -16,23 +17,18 @@ const ImageGallery = ({ imageNumber }) => {
 
   let counterRef = useRef(0);
 
-  const loaderStyle = {
-    position: "fixed",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-  };
-
   useEffect(() => {
-    fetch("https://picsum.photos/v2/list")
-      .then((res) => res.json())
-      .then((data) => {
-        setImageArray(data);
-      })
-      .catch((err) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://picsum.photos/v2/list");
+        const parsedData = await response.json();
+        setImageArray(parsedData);
+      } catch (error) {
         setFetching(false);
-        console.log(err);
-      });
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
   const onImageClick = (image) => {
@@ -43,7 +39,7 @@ const ImageGallery = ({ imageNumber }) => {
   const imageLoaded = () => {
     counterRef.current += 1;
     console.log(counterRef);
-    if (counterRef.current >= imageNumber) {
+    if (counterRef.current >= imageNumber - 2) {
       setFetching(false);
     }
   };
@@ -69,7 +65,6 @@ const ImageGallery = ({ imageNumber }) => {
       )}
       {open && (
         <StyledDialog
-          className="dialog"
           open
           onClick={() => {
             setSelectedImage(null);
