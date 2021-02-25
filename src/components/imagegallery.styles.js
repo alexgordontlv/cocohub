@@ -1,19 +1,9 @@
-import styled, { createGlobalStyle } from "styled-components";
-export const GlobalStyle = createGlobalStyle`
-.body{  
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;}
-`;
+import styled from "styled-components";
+
 export const loaderStyle = {
   position: "fixed",
   top: "50%",
   left: "50%",
-  transform: "translate(-50%, -50%)",
 };
 export const WrapperDiv = styled.div`
   display: flex;
@@ -30,13 +20,18 @@ export const StyledDialog = styled.dialog`
   position: fixed;
   border: none;
   background-color: rgba(0, 0, 0, 0.9);
-  height: auto;
   width: 100%;
   height: 100%;
   top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+export const StyledFullSizeImage = styled.img`
+  height: auto;
+  width: auto;
+  max-height: 80%;
+  max-width: 90%;
 `;
 
 export const StyledDiv = styled.div`
@@ -58,11 +53,4 @@ export const StyledImage = styled.img`
     transform: scale(1.1);
     transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   }
-`;
-
-export const StyledFullSizeImage = styled.img`
-  height: auto;
-  width: auto;
-  max-height: 80%;
-  max-width: 90%;
 `;

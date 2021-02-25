@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledDialog, StyledFullSizeImage } from "./imagegallery.styles";
 
-const DialogBox = ({ setSelectedImage, setOpen, open, selectedImage }) => {
+const DialogBox = ({ setSelectedImage, setOpen, selectedImage }) => {
   return (
     <StyledDialog
       open
