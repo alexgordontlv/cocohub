@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyledDialog, StyledFullSizeImage } from "./imagegallery.styles";
 
-const DialogBox = ({ setSelectedImage, setOpen, selectedImage }) => {
+const DialogBox = ({ setSelectedImage, selectedImage }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "scroll";
+    };
+  }, []);
   return (
     <StyledDialog
       open
       onClick={() => {
         setSelectedImage(null);
-        setOpen((open) => !open);
-        document.body.style.overflow = "scroll";
       }}
     >
       <StyledFullSizeImage

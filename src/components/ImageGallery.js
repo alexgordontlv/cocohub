@@ -9,7 +9,6 @@ import DialogBox from "./DialogBox";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const ImageGallery = ({ imageNumber }) => {
-  const [open, setOpen] = useState(false);
   const [imageArray, setImageArray] = useState([]);
   const [fetching, setFetching] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -21,22 +20,20 @@ const ImageGallery = ({ imageNumber }) => {
       try {
         const response = await fetch("https://picsum.photos/v2/list");
         const parsedData = await response.json();
-        setImageArray(parsedData);
+        setImageArray(parsedData.slice(0, imageNumber));
       } catch (error) {
         setFetching(false);
         console.log(error);
       }
     };
     fetchData();
-  }, []);
+  }, [imageNumber]);
 
   const onImageClick = (image) => {
-    document.body.style.overflow = "hidden";
     setSelectedImage(image);
-    setOpen((open) => !open);
   };
 
-  const imageLoaded = () => {
+  const onImageLoaded = () => {
     counterRef.current += 1;
     console.log(counterRef.current);
     if (counterRef.current >= imageNumber - 2) {
@@ -49,24 +46,21 @@ const ImageGallery = ({ imageNumber }) => {
       <div style={loaderStyle}>
         <ClipLoader color="gray" loading={fetching} size={50} />
       </div>
-      {imageArray.map(
-        (image, index) =>
-          index < imageNumber && (
-            <StyledDiv style={{ visibility: fetching ? "hidden" : "visible" }}>
-              <StyledImage
-                key={image.id}
-                src={image.download_url}
-                alt={image.author}
-                onLoad={imageLoaded}
-                onClick={() => onImageClick(image)}
-              />
-            </StyledDiv>
-          )
-      )}
-      {open && (
+      {imageArray.map((image) => (
+        <StyledDiv
+          style={{ visibility: fetching ? "hidden" : "visible" }}
+          key={image.id}
+        >
+          <StyledImage
+            src={image.download_url}
+            alt={image.author}
+            onLoad={onImageLoaded}
+            onClick={() => onImageClick(image)}
+          />
+        </StyledDiv>
+      ))}
+      {selectedImage && (
         <DialogBox
-          open={open}
-          setOpen={setOpen}
           selectedImage={selectedImage}
           setSelectedImage={setSelectedImage}
         />
